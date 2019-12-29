@@ -1,9 +1,62 @@
 //@import 'bootstrap/dist/css/bootstrap';
 
-
-
 h1 {
 
-  color: red;
+  //color: green;
 
+}
+
+#logo {
+  font-size: 1.7em;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#logo:hover{
+  color: #fff;
+  text-decoration: none;
+}
+
+.center{
+  text-align: center;
+}
+
+.jumbotron > h1{
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  font-weight: bold;
+
+}
+
+.btn-xlarge{
+  //font-size: 1.7em;
+  background-color: #292b2c;
+  border: 0px;
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+footer a:hover {
+  color: #222;
+  text-decoration: none;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
 }
