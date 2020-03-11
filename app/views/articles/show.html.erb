@@ -1,13 +1,55 @@
-<h1>Showing selected article</h1>
+<h2 align="center"> Title: <%= @article.title %> </h2>
 
-<p>
-  Title: <%= @article.title %>
-</p>
 
-<p>
-  Description: <%= @article.description %>
-</p>
+<div class="card col-xs-8 mt-4">
 
-<%= link_to "Edit this article", edit_article_path(@article) %> |
+  <h4 class="center description card-title pt-4">
+    <strong>
+      Description:
+    </strong>
+  </h4>
 
-<%= link_to "Show all", articles_path %>
+  <hr>
+
+
+  <div class="card-body">
+
+    <div class="card-text">
+
+      <%= simple_format(@article.description) %>
+      <%# the simple_format will display the formatting that I used
+      to create an article like returns and tabs, for example%>
+
+    </div>
+
+
+
+  </div>
+
+  <div class="article-actions list-group list-group-flush">
+
+
+
+    <div class="list-group-item">
+
+
+        <%= link_to "Edit this article", edit_article_path(@article), class: "btn btn-primary btn-lg btn-xlarge btn-danger" %>
+
+        <%= link_to "Delete this article", article_path(@article), method: :delete,
+                    data: {confirm: "Are you sure?"},
+                    class: "ml-3 btn btn-primary btn-lg btn-xlarge btn-danger" %>
+
+        <%= link_to "View all articles", articles_path, class: "ml-3 btn btn-primary btn-lg btn-xlarge btn-danger" %>
+
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+
