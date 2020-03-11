@@ -1,7 +1,5 @@
 <h1 align="center">Listing all articles</h1>
 
-
-
  <% @articles.each do |article| %>
   <div class="row mt-5 mb-5">
 
@@ -9,11 +7,13 @@
 
       <div class="card">
 
+
         <div class="article-title card-title">
 
           <%= link_to article.title, article_path(article) %>
 
         </div>
+
 
         <div class="article-body card-body">
 
@@ -33,18 +33,13 @@
                         data: {confirm: "Are you sure?"},
                         class: "ml-3 btn btn-primary btn-xlarge btn-danger" %>
 
-
           </div>
 
         </div>
 
-
       </div>
 
-
     </div>
-
-
 
   </div>
 
