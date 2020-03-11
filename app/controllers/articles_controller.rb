@@ -1,11 +1,15 @@
 class ArticlesController < ApplicationController
 
   before_action :set_article, only: [:edit, :update, :destroy, :show]
+  # this will call the method set_article before running edit, update, destroy and show actions
+
 
   def index
+    # fetches all articles from the DB into @articles
+
     @articles = Article.all
 
-  end
+  end # end index
 
 
 
