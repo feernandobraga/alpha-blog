@@ -49,7 +49,7 @@ class ArticlesController < ApplicationController
     # if article from view is valid, save the article on the DB
     # otherwise renders the new article page
     if @article.save
-      flash[:notice] = "Article was successfully created"
+      flash[:success] = "Article was successfully created"
       redirect_to article_path(@article)
 
     else
@@ -67,7 +67,7 @@ class ArticlesController < ApplicationController
 
 
     if @article.update(article_params)
-      flash[:notice] = "Article was successfully updated"
+      flash[:success] = "Article was successfully updated"
       redirect_to article_path(@article)
     else
       render 'edit'
@@ -95,7 +95,7 @@ class ArticlesController < ApplicationController
 
     @article.destroy
 
-    flash[:notice] = "Article deleted"
+    flash[:danger] = "Article deleted"
     redirect_to articles_path
 
   end #end destroy

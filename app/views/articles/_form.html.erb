@@ -1,21 +1,5 @@
-<%# display all validation error messages as a list %>
-<% if @article.errors.any?  %>
-
-  <h2>Please fix the following errors</h2>
-
-  <ul>
-
-    <% @article.errors.full_messages.each do |msg| %>
-
-      <li>
-        <%= msg %>
-      </li>
-
-    <% end %>
-
-  </ul>
-
-<% end %>
+<%# the line below will attribute the value of @article to obj %>
+<%= render "shared/errors", obj: @article %>
 
 <div class="row">
 

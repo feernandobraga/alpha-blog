@@ -1,12 +1,28 @@
 <%# This is rendered when we use flash[:notice] %>
 
+<div class="row mt-2 mb-2">
 
-<% flash.each do |name, msg| %>
+  <div class="col-sm-8 offset-2">
 
-  <ul>
-    <li>
-      <%= msg %>
-    </li>
-  </ul>
+    <% flash.each do |name, msg| %>
 
-<% end %>
+      <div class='alert alert-dismissible fade show alert-<%="#{name}" %>' role="alert">
+
+        <a href="#" class="close" data-dismiss="alert" aria-label="Close">&#215;</a>
+
+        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+        <%# content_tag converts the whole thing into an html block...
+        For this case it will create a DIV block, with the content of MSG and
+        an ID of flash_NAME if msg is a String. It will look like this:
+        <div id="flash_success">Article was successfully updated</div> %>
+
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+</div>
+
+

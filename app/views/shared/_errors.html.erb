@@ -1,0 +1,47 @@
+<%# display all validation error messages as a list %>
+
+<%# I have replaced all @article to obj so it is generic and can be re-used for other models %>
+<%# and then I've linked obj to @article at the beginning of _form.html.erb %>
+
+
+<% if obj.errors.any?  %>
+
+  <div class="row mb-4">
+
+    <div class="col-sm-8 offset-2">
+
+      <div class="alert-danger">
+
+        <h2>
+
+          <%= pluralize(obj.errors.count, "error") %>
+          prohibited this article from being saved:
+          <%# the pluralized functions will return "error" if only one error appears %>
+          <%# or "errors" if more than one is triggered %>
+
+        </h2>
+
+        <div>
+
+          <ul>
+
+            <% obj.errors.full_messages.each do |msg| %>
+
+              <li>
+                <%= msg %>
+              </li>
+
+            <% end %>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+<% end %>
