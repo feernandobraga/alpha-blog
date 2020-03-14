@@ -2,6 +2,8 @@ class User < ApplicationRecord
 
   has_many :articles #indicates that one user can have many articles
 
+  before_save { self.email = email.downcase }
+
   validates :username, presence: true,
             uniqueness: {case_sensitive: false}, #username needs to be unique regardless of capital letters
             length: {minimum: 3, maximum: 50}
