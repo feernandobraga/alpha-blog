@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
 
     # creates a instance of article based on the parameters that were passed
     @article = Article.new(article_params)
-
+    @article.user = User.first
     # if article from view is valid, save the article on the DB
     # otherwise renders the new article page
     if @article.save
