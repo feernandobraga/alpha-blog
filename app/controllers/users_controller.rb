@@ -37,6 +37,41 @@ class UsersController < ApplicationController
 
 
 
+
+  def edit
+
+    @user = User.find(params[:id])
+
+  end
+
+
+
+  def update
+
+    # this code will run after the user press the Update button when editing a user.
+    # It creates an instance variable @user and populates the model with the information
+    # coming from the parameters.
+    # Then, if the update was successfully, it flashes a notice and display all article,
+    # otherwise it renders the same page again.
+
+
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+
+      flash[:success] = "Your account was updated successfully"
+      redirect_to articles_path
+
+    else
+
+      render "edit"
+
+    end
+
+  end # end update
+
+
+
   private
 
   def user_params
