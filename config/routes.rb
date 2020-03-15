@@ -7,4 +7,14 @@ Rails.application.routes.draw do
   resources :articles
 
 
+  get "signup", to: "users#new"
+
+  # I could use:
+  # post "users", to: "users#create"
+  # OR resources as per line below:
+
+  resources :users, except: [:new]
+  # this will give me all routes to the user controller apart from user#new because
+  # I have already declared this one
+
 end

@@ -1,0 +1,98 @@
+<h1 align="center">Signup for Alpha Blog</h1>
+
+<%# the line below will attribute the value of @user to obj %>
+
+<%# I have replaced all @article to obj so it is generic and can be re-used for other models %>
+<%# and then I've linked obj to @article at the beginning of _form.html.erb %>
+
+<%= render "shared/errors", obj: @user %>
+
+<div class="row mt-5 mb-5 offset-2">
+
+  <div class="col-sm-12">
+
+    <%= form_for @user do |f| %>
+
+      <!-- username-->
+      <div class="form-group row">
+
+        <div class="col-form-label col-sm-2">
+
+          <%= f.label :username %>
+
+        </div>
+
+        <div class="col-sm-6">
+
+          <%= f.text_field :username, class: "form-control", placeholder: "Enter username", autofocus: true %>
+
+        </div>
+
+      </div>
+      <!--end username-->
+
+      <!--email-->
+      <div class="form-group row">
+
+        <div class="col-form-label col-sm-2">
+
+          <%= f.label :email %>
+
+        </div>
+
+        <div class="col-sm-6">
+
+          <%= f.email_field :email, class: "form-control", placeholder: "Enter email" %>
+
+        </div>
+
+      </div>
+      <!--end email-->
+
+
+      <!--password-->
+      <div class="form-group row">
+
+        <div class="col-form-label col-sm-2">
+
+          <%= f.label :password %>
+
+        </div>
+
+        <div class="col-sm-6">
+
+          <%= f.password_field :password, class: "form-control", placeholder: "Enter password" %>
+
+        </div>
+
+      </div>
+      <!--end password-->
+
+
+      <!--submit-->
+      <div class="form-group row offset-1">
+
+        <div class="col-sm-2 offset-1">
+
+          <%# I can change the name of the submit button by adding the value in quotes %>
+          <%= f.submit "Sign up", class: "btn btn-primary btn-lg btn-xlarge btn-danger" %>
+
+        </div>
+
+        <div class="col-sm-3">
+
+          <%= link_to "Cancel & Return", articles_path, class: "btn btn-primary btn-lg btn-xlarge btn-danger" %>
+
+        </div>
+
+
+      </div>
+      <!--end submit-->
+
+
+    <% end %>
+
+
+  </div>
+
+</div>

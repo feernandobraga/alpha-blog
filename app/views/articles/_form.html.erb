@@ -1,4 +1,8 @@
 <%# the line below will attribute the value of @article to obj %>
+
+<%# I have replaced all @article to obj so it is generic and can be re-used for other models %>
+<%# and then I've linked obj to @article at the beginning of _form.html.erb %>
+
 <%= render "shared/errors", obj: @article %>
 
 <div class="row">
