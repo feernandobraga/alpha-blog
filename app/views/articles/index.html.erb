@@ -1,60 +1,13 @@
 <h1 align="center">Listing all articles</h1>
 
- <% @articles.each do |article| %>
-  <div class="row mt-5 mb-5">
+<%= render "article", obj: @articles %>
 
-    <div class="col-xl-8 offset-2">
-
-      <div class="card p-4">
-
-
-        <div class="article-title card-title">
-
-          <%= link_to article.title, article_path(article) %>
-
-        </div>
-
-
-        <div class="article-body card-body">
-
-          <%= truncate(article.description, length: 100) %>
-          <%# this will truncate the article so it doesnt load the entire article on the page %>
-
-
-          <div class="article-meta-details">
-            <small>
-              <%# article.user.username will bring the user associated to the article, if there's an user associated %>
-              Created by: <%= article.user.username if article.user %> -
-
-              <%# time_ago_in_words will bring when the article was created in a nice format %>
-              <%= time_ago_in_words(article.created_at) %> ago,
-
-              <%# time_ago_in_words will bring when the article was updated in a nice format %>
-               last updated: <%= time_ago_in_words(article.updated_at) %> ago
-            </small>
-          </div>
-
-        </div>
-
-
-        <div class="article-actions list-group list-group-flush">
-
-          <div class="list-group-item">
-
-            <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-primary  btn-xlarge btn-danger" %>
-
-            <%= link_to "Delete this article", article_path(article), method: :delete,
-                        data: {confirm: "Are you sure?"},
-                        class: "ml-3 btn btn-primary btn-xlarge btn-danger" %>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-<% end %>
+<%# I have removed the content of this page to a partial
+    that is located at views > articles > _article.html.erb
+    To pass the value from @articles to the variable obj
+    I had to use the line above.
+    I have done this so I can re-use the parcel with not only @articles
+    but any other variable that I want, including instance variables from
+    a controller that is not articles_controller.
+    In fact, I have used the partial at views > users > show.html.erb
+%>

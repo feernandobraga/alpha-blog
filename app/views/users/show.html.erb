@@ -1,0 +1,31 @@
+<h1 align="center">Welcome to, <%= @user.username %>'s page</h1>
+
+<div class="row">
+
+  <div class="col-md-4 offset-4 center mb-4 mt-4">
+
+    <%= gravatar_for(@user, size: 150) %>
+
+    <%# methods that are build for views are usually placed
+        at app > helpers > application_helper
+        This gravatar_for will be responsible for displaying a profile image.
+        For this method we pass in an user and a size
+    %>
+
+  </div>
+
+</div>
+
+<h4 align="center" class="mt-4 mb-n4">
+
+  <%= @user.username %>'s articles
+
+</h4>
+
+<%= render "articles/article", obj: @user.articles %>
+
+<%# since I have created the partial views > articles > _article.html.erb
+    that I have used to display all articles, I can now pass the variable
+    @user.articles as the value for obj and it will bring me all articles
+    from that specific user.
+%>

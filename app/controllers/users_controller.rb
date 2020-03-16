@@ -8,9 +8,6 @@ class UsersController < ApplicationController
   end
 
 
-
-
-
   def create
 
     # this method will run when the user press Sign up from the sign up page.
@@ -69,6 +66,15 @@ class UsersController < ApplicationController
     end
 
   end # end update
+
+
+
+  def show
+
+    @user = User.find(params[:id])
+
+  end
+
 
 
 
