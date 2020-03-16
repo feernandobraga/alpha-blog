@@ -22,10 +22,23 @@
 
 </h4>
 
-<%= render "articles/article", obj: @user.articles %>
+<%# this will display the pagination controls for the variable @user_articles %>
+<div class="d-flex justify-content-center mt-5 mb-n4">
+  <%= will_paginate @user_articles%>
+</div>
+
+<%# I had to change from @user.articles to @user_articles
+    since I've passed my articles through the instance variable in the controller
+%>
+<%= render "articles/article", obj: @user_articles %>
 
 <%# since I have created the partial views > articles > _article.html.erb
     that I have used to display all articles, I can now pass the variable
     @user.articles as the value for obj and it will bring me all articles
     from that specific user.
 %>
+
+<%# this will display the pagination controls for the variable @user_articles %>
+<div class="d-flex justify-content-center mt-5 mb-n4">
+  <%= will_paginate @user_articles%>
+</div>

@@ -2,7 +2,9 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 2)
+    # this will implement pagination to the view that displays all users
+    # and it will limit it to two users per page
   end
 
 
@@ -79,6 +81,15 @@ class UsersController < ApplicationController
   def show
 
     @user = User.find(params[:id])
+
+    # if we implement the pagination to @user, it won't work because
+    # this method only displays one user per time.
+    # Therefore, we need to create a new instance variable
+    # called @user_articles that we will handle the pagination for us
+
+    @user_articles = @user.articles.paginate(page: params[:page], per_page: 3)
+    # this piece of code will apply pagination to all articles from a given user
+    # and limit it to 3 articles per page
 
   end
 

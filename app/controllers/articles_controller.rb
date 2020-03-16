@@ -7,7 +7,14 @@ class ArticlesController < ApplicationController
   def index
     # fetches all articles from the DB into @articles
 
-    @articles = Article.all
+    # @articles = Article.all
+
+    # I have commented the line above as we will use paginate
+
+    @articles = Article.paginate(page: params[:page], per_page: 4)
+    # this will limit the number of article per page at 4
+
+
 
   end # end index
 
