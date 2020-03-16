@@ -79,6 +79,7 @@ footer ul li {
 
 .article-actions {
   padding-top: 5px;
+  //background-color: #F7F7F7;
 }
 
 .description {
@@ -100,4 +101,18 @@ footer ul li {
   border-top: 1px solid #eaeaea;
   margin-top: 15px;
   //float: right;
+}
+
+.listing{
+  list-style: none;
+  padding-left: 0;
+
+}
+
+.card {
+  background-color: #F7F7F7;
+}
+
+.list-group-item{
+  background-color: #F7F7F7;
 }

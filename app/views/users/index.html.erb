@@ -1,0 +1,65 @@
+<h1 align="center">All Alpha Bloggers</h1>
+
+
+<div align="center">
+
+
+  <% @users.each do |user| %>
+
+
+    <ul class="listing">
+
+      <div class="row mt-5 mb-5">
+
+        <div class="card col-md-4 offset-4 p-4">
+
+          <!--image-->
+          <li>
+
+            <%= link_to gravatar_for(user), user_path(user) %>
+            <%# user_path(user) will link to users#show, which will display
+                the user's page
+            %>
+
+          </li>
+          <!--end image-->
+
+
+          <!--username-->
+          <li class="article-title">
+
+            <%= link_to user.username, user_path(user) %>
+            <%# user_path(user) will link to users#show, which will display
+                the user's page
+            %>
+
+          </li>
+          <!--end username-->
+
+
+          <!--display how many articles that user has, if any-->
+          <li>
+
+            <small>
+
+              <%= pluralize(user.articles.count, "article") if user.articles %>
+              <%# pluralize will make the word article plural if there's more
+                  than one article associated to that user.
+                  This will only appear if the user has any articles.
+              %>
+
+            </small>
+
+          </li>
+          <!--end articles count-->
+
+
+        </div>
+
+      </div>
+
+    </ul>
+
+  <% end %>
+
+</div>
