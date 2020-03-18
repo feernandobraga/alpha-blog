@@ -57,6 +57,17 @@
           </li>
           <!--end articles count-->
 
+          <%# if the user is an admin, we will allow him/her to delete other users
+          including all articles from that user %>
+          <% if logged_in? && (current_user.admin?) %>
+          <!-- delete user button for admins only-->
+            <li>
+              <%= link_to "Delete this user", user_path(user), method: :delete,
+                  data: {confirm: "Are you sure? All articles from this user will be deleted as well!"}%>
+            </li>
+
+          <% end %>
+
 
         </div>
 

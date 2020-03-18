@@ -127,9 +127,10 @@ class ArticlesController < ApplicationController
   def require_same_user
 
     # first it checks if current_user is the same user passed in the params.
+    # It also checks if the user is not an admin
     # If not, it flashes a message and redirect the user to the root_page
 
-    if current_user != @article.user
+    if current_user != @article.user and !current_user.admin?
       flash[:danger] = "This does not belong to you!"
       redirect_to root_path
     end

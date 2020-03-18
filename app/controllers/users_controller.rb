@@ -6,10 +6,14 @@ class UsersController < ApplicationController
   # The method set_user gets the user based on an ID passed through the parameters
 
 
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   # this method will prevent logged users to edit other users
   # buy manually entering the URL localhost:3000/users/1/edit
   # The require_same_user method can be found at the end of this controller.
+
+
+  before_action :require_admin, only: [:destroy]
+  # for the destroy action, the user has to be an admin
 
   def index
     @users = User.paginate(page: params[:page], per_page: 2)
@@ -109,6 +113,16 @@ class UsersController < ApplicationController
   end
 
 
+  def destroy
+
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:danger] = "The user and all articles create by user have been deleted"
+    redirect_to users_path
+
+  end
+
+
   private
 
   def user_params
@@ -130,13 +144,26 @@ class UsersController < ApplicationController
 
     # this method will prevent logged users to edit other users
     # by manually entering the URL localhost:3000/users/X/edit, where X is any user id
+    # Only admins are allowed to do it
 
-    if current_user != @user
+    if current_user != @user and !current_user.admin?
       flash[:danger] = "Nice try buddy"
       redirect_to root_path
 
     end
 
-  end
+  end # end require_same_user
+
+
+  def require_admin
+
+    # this will prevent that any user submits a destroy request based on
+    # the url localhost:3000/users/3/
+
+    if logged_in? and !current_user.admin?
+      flash[:danger] = "Not allowed!"
+    end
+
+  end # end require admin
 
 end

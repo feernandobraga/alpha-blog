@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
-  has_many :articles #indicates that one user can have many articles
+  has_many :articles, dependent: :destroy
+  # this indicates that one user can have many articles and if a user gets deleted, all articles will be gone.
 
   before_save { self.email = email.downcase }
 
