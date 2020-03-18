@@ -41,8 +41,13 @@ class UsersController < ApplicationController
 
     if @user.save
 
+      # if a new user is created, the next line will create a session with the user ID
+      # from the user that we just created.
+      # Then it flashes a message and redirects the user to his/her profile
+      session[:user_id] = @user.id
+
       flash[:success] = "Welcome to the Alpha Blog #{@user.username}"
-      redirect_to articles_path
+      redirect_to user_path(@user)
 
     else
       render "new"
@@ -125,8 +130,6 @@ class UsersController < ApplicationController
 
     # this method will prevent logged users to edit other users
     # by manually entering the URL localhost:3000/users/X/edit, where X is any user id
-
-
 
     if current_user != @user
       flash[:danger] = "Nice try buddy"
