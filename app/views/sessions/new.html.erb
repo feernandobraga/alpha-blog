@@ -1,0 +1,74 @@
+<h1 align="center">Login</h1>
+
+
+<%# This form_for won't receive any instance variable. Instead, it will
+    record a hashed session (:session) and it will be submitted
+    to login_path %>
+<%= form_for :session, url: login_path do |f| %>
+
+  <div class="offset-2 mt-5">
+
+
+      <!--email-->
+      <div class="form-group row">
+
+        <div class="col-form-label col-sm-2">
+
+          <%= f.label :email %>
+
+        </div>
+
+        <div class="col-sm-6">
+
+          <%= f.email_field :email, class: "form-control", placeholder: "Enter email", autofocus: true %>
+
+        </div>
+
+      </div>
+      <!--end email-->
+
+
+      <!--password-->
+      <div class="form-group row">
+
+        <div class="col-form-label col-sm-2">
+
+          <%= f.label :password %>
+
+        </div>
+
+        <div class="col-sm-6">
+
+          <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+
+        </div>
+
+      </div>
+      <!--end password-->
+
+
+      <!--submit-->
+      <div class="form-group row offset-1">
+
+        <div class="col-sm-2 offset-1">
+
+
+          <%= f.submit "Login", class: "btn btn-primary btn-lg btn-xlarge btn-danger" %>
+
+        </div>
+
+        <div class="col-sm-3">
+
+          <%= link_to "Cancel & Return", articles_path, class: "btn btn-primary btn-lg btn-xlarge btn-danger" %>
+
+        </div>
+
+
+      </div>
+      <!--end submit-->
+
+
+    <% end %>
+
+  </div>
+

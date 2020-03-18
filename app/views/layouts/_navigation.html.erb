@@ -8,26 +8,65 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+
       <li class="nav-item">
         <%= link_to "Articles", articles_path, class: "nav-link" %>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Actions
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "New Article", new_article_path, class: "dropdown-item" %>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
+
+
+      <% if logged_in? %>
+        <%# this if condition verifies if there is a session
+            attributed to a user %>
+
+        <!-- drop down menu -->
+        <li class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Actions
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+            <!-- New Article-->
+            <%= link_to "New Article", new_article_path, class: "dropdown-item" %>
+
+
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+
+            <%# this is a link to logout, passing the method delete.
+                and it will call the method session#destroy%>
+            <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item"%>
+
+          </div>
+        </li>
+        <!-- end drop down -->
+
+        <!-- log out -->
+        <li class="nav-item">
+          <%= link_to "Log out", logout_path, method: :delete, class: "nav-link"%>
+        </li>
+
+      <% else %>
+
+        <%# if there is no session (user is not logged in) %>
+
+        <!-- Log in -->
+        <li class="nav-item">
+          <%= link_to "Log in", login_path, class: "nav-link"%>
+        </li>
+        <!-- End Log in -->
+
+        <!-- Sign up -->
+        <li class="nav-item">
+          <%= link_to "Sign up", signup_path, class: "nav-link"%>
+        </li>
+        <!-- End sign up -->
+
+      <% end %>
+      <%# end if logged_in? %>
+
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
