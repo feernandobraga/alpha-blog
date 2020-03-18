@@ -3,6 +3,18 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :destroy, :show]
   # this will call the method set_article before running edit, update, destroy and show actions
 
+  before_action :require_user, except: [:index, :show]
+  # this will call the method require_user (which is a helper and can be found in the application_controller)
+  # before executing all actions apart from index and show.
+  # require_user will evaluate if the user is logged in before executing the methods.
+  # If the user is not logged in it will display a message warning him that he/she can't perform that action
+  # Please note that the order in which you create "before_action" methods matters.
+
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+  # this method will prevent logged users to edit articles that do not belong to then
+  # by manually entering the URL localhost:3000/article/1/edit
+  # The require_same_user method can be found at the end of this controller.
+
 
   def index
     # fetches all articles from the DB into @articles
@@ -106,6 +118,19 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
 
   end #end destroy
+
+
+  def require_same_user
+
+    # first it checks if current_user is the same user passed in the params.
+    # If not, it flashes a message and redirect the user to the root_page
+
+    if current_user != @article.user
+      flash[:danger] = "This does not belong to you!"
+      redirect_to root_path
+    end
+
+  end
 
 
 

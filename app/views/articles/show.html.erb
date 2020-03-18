@@ -97,13 +97,22 @@
 
     <div class="list-group-item">
 
+
+      <% if logged_in? && current_user == @article.user %>
+
+        <%# this will create a restriction where only the owner of the article can edit and/or delete it.
+              It first checks if the user is logged in and then it compares the current_user against the article.user
+              If they are not the same, the buttons won't be displayed%>
+
         <%= link_to "Edit this article", edit_article_path(@article), class: "btn btn-primary btn-xlarge btn-danger" %>
 
         <%= link_to "Delete this article", article_path(@article), method: :delete,
                     data: {confirm: "Are you sure?"},
                     class: "ml-3 btn btn-primary btn-xlarge btn-danger" %>
 
-        <%= link_to "View all articles", articles_path, class: "ml-3 btn btn-primary btn-xlarge btn-danger" %>
+      <% end %>
+
+      <%= link_to "View all articles", articles_path, class: "ml-3 btn btn-primary btn-xlarge btn-danger" %>
 
     </div>
 

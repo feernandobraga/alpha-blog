@@ -46,19 +46,27 @@
         </div>
 
 
-        <div class="article-actions list-group list-group-flush">
+        <% if logged_in? && current_user == article.user %>
 
-          <div class="list-group-item">
+          <%# this will create a restriction where only the owner of the article can edit and/or delete it.
+              It first check if the user is logged in and the it compared the current_user against the article.user
+              If they are not the same, the buttons won't be displayed%>
 
-            <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-primary  btn-xlarge btn-danger" %>
+          <div class="article-actions list-group list-group-flush">
 
-            <%= link_to "Delete this article", article_path(article), method: :delete,
-                        data: {confirm: "Are you sure?"},
-                        class: "ml-3 btn btn-primary btn-xlarge btn-danger" %>
+            <div class="list-group-item">
+
+              <%= link_to "Edit this article", edit_article_path(article), class: "btn btn-primary  btn-xlarge btn-danger" %>
+
+              <%= link_to "Delete this article", article_path(article), method: :delete,
+                          data: {confirm: "Are you sure?"},
+                          class: "ml-3 btn btn-primary btn-xlarge btn-danger" %>
+
+            </div>
 
           </div>
 
-        </div>
+        <% end %>
 
       </div>
 
